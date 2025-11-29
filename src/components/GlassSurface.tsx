@@ -62,21 +62,21 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
   children,
   width = 200,
   height = 80,
-  borderRadius = 20,
+  borderRadius = 50,
   borderWidth = 0.07,
   brightness = 50,
   opacity = 0.93,
-  blur = 11,
-  displace = 0,
-  backgroundOpacity = 0,
-  saturation = 1,
+  blur = 24,
+  displace = 0.5,
+  backgroundOpacity = 0.4,
+  saturation = 1.4,
   distortionScale = -180,
   redOffset = 0,
   greenOffset = 10,
   blueOffset = 20,
   xChannel = "R",
   yChannel = "G",
-  mixBlendMode = "difference",
+  mixBlendMode = "normal",
   className = "",
   style = {},
 }) => {
@@ -87,9 +87,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
 
   const containerRef = useRef<HTMLDivElement>(null);
   const feImageRef = useRef<SVGFEImageElement>(null);
-  const redChannelRef = useRef<SVGFEDisplacementMapElement>(null);
-  const greenChannelRef = useRef<SVGFEDisplacementMapElement>(null);
-  const blueChannelRef = useRef<SVGFEDisplacementMapElement>(null);
+  const displacementMapRef = useRef<SVGFEDisplacementMapElement>(null);
   const gaussianBlurRef = useRef<SVGFEGaussianBlurElement>(null);
 
   const isDarkMode = useDarkMode();
@@ -132,20 +130,14 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
 
   useEffect(() => {
     updateDisplacementMap();
-    [
-      { ref: redChannelRef, offset: redOffset },
-      { ref: greenChannelRef, offset: greenOffset },
-      { ref: blueChannelRef, offset: blueOffset },
-    ].forEach(({ ref, offset }) => {
-      if (ref.current) {
-        ref.current.setAttribute(
-          "scale",
-          (distortionScale + offset).toString()
-        );
-        ref.current.setAttribute("xChannelSelector", xChannel);
-        ref.current.setAttribute("yChannelSelector", yChannel);
-      }
-    });
+    if (displacementMapRef.current) {
+      displacementMapRef.current.setAttribute(
+        "scale",
+        distortionScale.toString()
+      );
+      displacementMapRef.current.setAttribute("xChannelSelector", xChannel);
+      displacementMapRef.current.setAttribute("yChannelSelector", yChannel);
+    }
 
     gaussianBlurRef.current?.setAttribute("stdDeviation", displace.toString());
   }, [
@@ -231,72 +223,79 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     const svgSupported = supportsSVGFilters();
     const backdropFilterSupported = supportsBackdropFilter();
 
+    const backdropBlur = `blur(${blur}px)`;
+    const backdropSaturate = `saturate(${saturation})`;
+
+    const glassBackground = isDarkMode
+      ? `linear-gradient(145deg, rgba(40,40,40,${Math.min(
+          backgroundOpacity + 0.3,
+          0.9
+        )}), rgba(10,10,10,${Math.min(backgroundOpacity + 0.1, 0.8)}))`
+      : `linear-gradient(145deg, rgba(255,255,255,${Math.min(
+          backgroundOpacity + 0.4,
+          0.95
+        )}), rgba(255,255,255,${Math.min(backgroundOpacity + 0.1, 0.8)}))`;
+
+    const borderGradient = isDarkMode
+      ? `linear-gradient(to bottom right, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0.05) 100%)`
+      : `linear-gradient(to bottom right, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0.1) 100%)`;
+
     if (svgSupported) {
       return {
         ...baseStyles,
-        background: isDarkMode
-          ? `hsl(0 0% 0% / ${backgroundOpacity})`
-          : `hsl(0 0% 100% / ${backgroundOpacity})`,
-        backdropFilter: `url(#${filterId}) saturate(${saturation})`,
+        background: `${glassBackground} padding-box, ${borderGradient} border-box`,
+        border: "1px solid transparent",
+        backdropFilter: `url(#${filterId}) ${backdropBlur} ${backdropSaturate}`,
         boxShadow: isDarkMode
-          ? `0 0 2px 1px color-mix(in oklch, white, transparent 65%) inset,
-             0 0 10px 4px color-mix(in oklch, white, transparent 85%) inset,
-             0px 4px 16px rgba(17, 17, 26, 0.05),
-             0px 8px 24px rgba(17, 17, 26, 0.05),
-             0px 16px 56px rgba(17, 17, 26, 0.05),
-             0px 4px 16px rgba(17, 17, 26, 0.05) inset,
-             0px 8px 24px rgba(17, 17, 26, 0.05) inset,
-             0px 16px 56px rgba(17, 17, 26, 0.05) inset`
-          : `0 0 2px 1px color-mix(in oklch, black, transparent 85%) inset,
-             0 0 10px 4px color-mix(in oklch, black, transparent 90%) inset,
-             0px 4px 16px rgba(17, 17, 26, 0.05),
-             0px 8px 24px rgba(17, 17, 26, 0.05),
-             0px 16px 56px rgba(17, 17, 26, 0.05),
-             0px 4px 16px rgba(17, 17, 26, 0.05) inset,
-             0px 8px 24px rgba(17, 17, 26, 0.05) inset,
-             0px 16px 56px rgba(17, 17, 26, 0.05) inset`,
+          ? `inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+             inset 0 -15px 30px -10px rgba(0, 0, 0, 0.7),
+             inset 0 0 20px rgba(0, 0, 0, 0.3),
+             0 20px 40px -10px rgba(0, 0, 0, 0.6)`
+          : `inset 0 1px 0 0 rgba(255, 255, 255, 0.6),
+             inset 0 -15px 30px -10px rgba(200, 200, 200, 0.3),
+             inset 0 0 20px rgba(255, 255, 255, 0.6),
+             0 20px 40px -10px rgba(0, 0, 0, 0.2)`,
       };
     } else {
       if (isDarkMode) {
         if (!backdropFilterSupported) {
           return {
             ...baseStyles,
-            background: "rgba(0, 0, 0, 0.4)",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
-            boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
-                        inset 0 -1px 0 0 rgba(255, 255, 255, 0.1)`,
+            background: "rgba(20, 20, 20, 0.8)",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.15)`,
           };
         } else {
           return {
             ...baseStyles,
-            background: "rgba(255, 255, 255, 0.1)",
-            backdropFilter: "blur(12px) saturate(1.8) brightness(1.2)",
-            WebkitBackdropFilter: "blur(12px) saturate(1.8) brightness(1.2)",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
-            boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
-                        inset 0 -1px 0 0 rgba(255, 255, 255, 0.1)`,
+            background: `${glassBackground} padding-box, ${borderGradient} border-box`,
+            border: "1px solid transparent",
+            backdropFilter: `${backdropBlur} ${backdropSaturate}`,
+            WebkitBackdropFilter: `${backdropBlur} ${backdropSaturate}`,
+            boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+                        inset 0 -20px 40px -10px rgba(0, 0, 0, 0.4),
+                        0 20px 40px -10px rgba(0, 0, 0, 0.4)`,
           };
         }
       } else {
+        // Light mode fallback
         if (!backdropFilterSupported) {
           return {
             ...baseStyles,
-            background: "rgba(255, 255, 255, 0.4)",
-            border: "1px solid rgba(255, 255, 255, 0.3)",
-            boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
-                        inset 0 -1px 0 0 rgba(255, 255, 255, 0.3)`,
+            background: "rgba(255, 255, 255, 0.85)",
+            border: "1px solid rgba(255, 255, 255, 0.4)",
+            boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.5)`,
           };
         } else {
           return {
             ...baseStyles,
-            background: "rgba(255, 255, 255, 0.25)",
-            backdropFilter: "blur(12px) saturate(1.8) brightness(1.1)",
-            WebkitBackdropFilter: "blur(12px) saturate(1.8) brightness(1.1)",
-            border: "1px solid rgba(255, 255, 255, 0.3)",
-            boxShadow: `0 8px 32px 0 rgba(31, 38, 135, 0.2),
-                        0 2px 16px 0 rgba(31, 38, 135, 0.1),
-                        inset 0 1px 0 0 rgba(255, 255, 255, 0.4),
-                        inset 0 -1px 0 0 rgba(255, 255, 255, 0.2)`,
+            background: `${glassBackground} padding-box, ${borderGradient} border-box`,
+            border: "1px solid transparent",
+            backdropFilter: `${backdropBlur} ${backdropSaturate}`,
+            WebkitBackdropFilter: `${backdropBlur} ${backdropSaturate}`,
+            boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
+                        inset 0 -10px 30px -5px rgba(0, 0, 0, 0.05),
+                        0 20px 40px -10px rgba(0, 0, 0, 0.15)`,
           };
         }
       }
@@ -340,62 +339,15 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
             />
 
             <feDisplacementMap
-              ref={redChannelRef}
+              ref={displacementMapRef}
               in="SourceGraphic"
               in2="map"
-              id="redchannel"
-              result="dispRed"
+              result="output"
             />
-            <feColorMatrix
-              in="dispRed"
-              type="matrix"
-              values="1 0 0 0 0
-                      0 0 0 0 0
-                      0 0 0 0 0
-                      0 0 0 1 0"
-              result="red"
-            />
-
-            <feDisplacementMap
-              ref={greenChannelRef}
-              in="SourceGraphic"
-              in2="map"
-              id="greenchannel"
-              result="dispGreen"
-            />
-            <feColorMatrix
-              in="dispGreen"
-              type="matrix"
-              values="0 0 0 0 0
-                      0 1 0 0 0
-                      0 0 0 0 0
-                      0 0 0 1 0"
-              result="green"
-            />
-
-            <feDisplacementMap
-              ref={blueChannelRef}
-              in="SourceGraphic"
-              in2="map"
-              id="bluechannel"
-              result="dispBlue"
-            />
-            <feColorMatrix
-              in="dispBlue"
-              type="matrix"
-              values="0 0 0 0 0
-                      0 0 0 0 0
-                      0 0 1 0 0
-                      0 0 0 1 0"
-              result="blue"
-            />
-
-            <feBlend in="red" in2="green" mode="screen" result="rg" />
-            <feBlend in="rg" in2="blue" mode="screen" result="output" />
             <feGaussianBlur
               ref={gaussianBlurRef}
               in="output"
-              stdDeviation="0.7"
+              stdDeviation={displace}
             />
           </filter>
         </defs>
