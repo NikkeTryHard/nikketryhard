@@ -1,6 +1,6 @@
 # Louie
 
-Employed and I build software and argue with bugs for a living.
+Unemployed and I build software and argue with bugs for a living.
 Sometimes I win.
 
 <img width="512" height="329" alt="code_50" src="https://github.com/user-attachments/assets/c1154005-d10e-456e-a261-5d2dfef79a71" />
