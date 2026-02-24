@@ -1,8 +1,6 @@
 I am Unemployed and I build software and argue with bugs for a living.
 Sometimes I win.
 
-<img width="512" height="329" alt="code_50" src="https://github.com/user-attachments/assets/c1154005-d10e-456e-a261-5d2dfef79a71" />
-
 ## What I focus on
 - Building practical tools that solve real workflow problems.
 - Shipping quickly, then polishing like that was the plan from the start.
@@ -25,3 +23,6 @@ Sometimes I win.
 ## Contact
 - louisnewmobile@gmail.com
 - If it involves code, coffee, or chaotic stuff, I am interested.
+
+<img width="256" height="165" alt="code_50_1_50" src="https://github.com/user-attachments/assets/472650b7-b4a9-4738-9e3e-020a1c3b4b8d" />
+
