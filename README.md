@@ -1,33 +1,30 @@
-<h1 align="center">Hey, I'm Louie 👋</h1>
-<p align="center">
-  <b>Software builder by day, bug negotiator by night.</b><br/>
-  Born to inspire, occasionally stuck in VS Code.
-</p>
+# Louie
 
-<p align="center">
-  <img width="512" height="329" alt="code_50" src="https://github.com/user-attachments/assets/c1154005-d10e-456e-a261-5d2dfef79a71" />
-</p>
+I build software and argue with bugs for a living.
+Sometimes I win.
 
-## 🚀 What I’m focused on
-- Building practical AI + automation tools that solve real workflow pain.
-- Shipping fast, then polishing like I planned it all along.
-- Writing code that future-me won’t roast present-me for.
+<img width="512" height="329" alt="code_50" src="https://github.com/user-attachments/assets/c1154005-d10e-456e-a261-5d2dfef79a71" />
 
-## 🧰 Tech I use a lot
-- **Languages:** Python, TypeScript, Rust
-- **Tooling:** Docker, GitHub Actions, Bun, VS Code
-- **Interests:** AI infra, dev tooling, automation, reverse engineering
+## What I focus on
+- Building practical AI and automation tools that solve real workflow problems.
+- Shipping quickly, then polishing like that was the plan from the start.
+- Writing code future-me can read without filing a complaint.
 
-## 🌟 Featured work
-- **zerogravity** — OpenAI/Anthropic/Gemini-compatible proxy with anti-detection traffic behavior.
-- **AIstudioProxyAPI** — Fast API proxy for AI Studio workflows and API interoperability.
-- **tenhou-to-mjai** — Converts Tenhou logs into mjai format for AI training pipelines.
-- **tach-core** — Pytest-inspired execution model with fine-grained memory snapshots.
+## Tech I use a lot
+- Languages: Python, TypeScript, Rust
+- Tooling: Docker, GitHub Actions, Bun, VS Code
+- Interests: AI infrastructure, developer tooling, automation, reverse engineering
 
-## 🤝 Let’s connect
-- 📍 Dallas, TX
-- 📧 **louisnewmobile@gmail.com**
-- 💬 If it involves code, coffee, or chaotic experiments, I’m interested.
+## Featured projects
+- zerogravity: OpenAI, Anthropic, and Gemini-compatible proxy with anti-detection traffic behavior.
+- AIstudioProxyAPI: Fast API proxy for AI Studio workflows and API interoperability.
+- tenhou-to-mjai: Converts Tenhou logs into mjai format for AI training pipelines.
+- tach-core: Pytest-inspired execution model with fine-grained memory snapshots.
+
+## Contact
+- Dallas, TX
+- louisnewmobile@gmail.com
+- If it involves code, coffee, or chaotic experiments, I am interested.
 
 ---
-<p align="center"><i>"Works on my machine" is not a strategy, but it is a lifestyle.</i></p>
+"Works on my machine" is not a strategy, but it has excellent brand loyalty.
