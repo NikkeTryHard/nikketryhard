@@ -1,30 +1,29 @@
 # Louie
 
-I build software and argue with bugs for a living.
+Employed and I build software and argue with bugs for a living.
 Sometimes I win.
 
 <img width="512" height="329" alt="code_50" src="https://github.com/user-attachments/assets/c1154005-d10e-456e-a261-5d2dfef79a71" />
 
 ## What I focus on
-- Building practical AI and automation tools that solve real workflow problems.
+- Building practical tools that solve real workflow problems.
 - Shipping quickly, then polishing like that was the plan from the start.
-- Writing code future-me can read without filing a complaint.
+- Arguing with 7 session of opencode in the middle of the night. Sometimes until the morning.
+
+## What I dont do
+- Building projects with emojis in their readme.
+- Dumping AI slop.
+- Give you free api keys.
 
 ## Tech I use a lot
 - Languages: Python, TypeScript, Rust
-- Tooling: Docker, GitHub Actions, Bun, VS Code
-- Interests: AI infrastructure, developer tooling, automation, reverse engineering
 
 ## Featured projects
-- zerogravity: OpenAI, Anthropic, and Gemini-compatible proxy with anti-detection traffic behavior.
-- AIstudioProxyAPI: Fast API proxy for AI Studio workflows and API interoperability.
-- tenhou-to-mjai: Converts Tenhou logs into mjai format for AI training pipelines.
-- tach-core: Pytest-inspired execution model with fine-grained memory snapshots.
+- [zerogravity](https://github.com/NikkeTryHard/zerogravity)
+- [AIstudioProxyAPI](https://github.com/CJackHwang/AIstudioProxyAPI)
+- [tenhou-to-mjai](https://github.com/NikkeTryHard/tenhou-to-mjai)
+- [tach-core](https://github.com/NikkeTryHard/tach-core)
 
 ## Contact
-- Dallas, TX
 - louisnewmobile@gmail.com
-- If it involves code, coffee, or chaotic experiments, I am interested.
-
----
-"Works on my machine" is not a strategy, but it has excellent brand loyalty.
+- If it involves code, coffee, or chaotic stuff, I am interested.
