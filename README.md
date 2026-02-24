@@ -1,5 +1,3 @@
-# Louie
-
 Unemployed and I build software and argue with bugs for a living.
 Sometimes I win.
 
