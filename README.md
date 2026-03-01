@@ -1,4 +1,4 @@
-![Profile Views](https://komarev.com/ghpvc/?username=NikkeTryHard&color=grey&style=flat&label=Profile+Views)
+![Profile Views](https://komarev.com/ghpvc/?username=NikkeTryHard&color=grey&style=flat&label=Profile+Views&base=5000)
 
 I am unemployed and I build software and argue with bugs for a living.
 Sometimes I win.
