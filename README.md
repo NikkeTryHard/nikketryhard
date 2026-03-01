@@ -1,3 +1,5 @@
+![Profile Views](https://komarev.com/ghpvc/?username=NikkeTryHard&color=grey&style=flat&label=Profile+Views)
+
 I am unemployed and I build software and argue with bugs for a living.
 Sometimes I win.
 
