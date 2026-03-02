@@ -16,12 +16,6 @@ Sometimes I win.
 ## Tech I use a lot
 - Languages: Python, TypeScript, Rust
 
-## Featured projects
-- [zerogravity](https://github.com/NikkeTryHard/zerogravity)
-- [AIstudioProxyAPI](https://github.com/CJackHwang/AIstudioProxyAPI)
-- [tenhou-to-mjai](https://github.com/NikkeTryHard/tenhou-to-mjai)
-- [tach-core](https://github.com/NikkeTryHard/tach-core)
-
 ## Contact
 - If you also hate classes and love coding overnight. Reach out to me.
 
