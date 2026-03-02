@@ -23,7 +23,6 @@ Sometimes I win.
 - [tach-core](https://github.com/NikkeTryHard/tach-core)
 
 ## Contact
-- louisnewmobile@gmail.com
 - If you also hate classes and love coding overnight. Reach out to me.
 
 <img width="256" height="165" alt="code_50_1_50" src="https://github.com/user-attachments/assets/472650b7-b4a9-4738-9e3e-020a1c3b4b8d" />
