@@ -15,6 +15,7 @@ Sometimes I win.
 
 ## Tech I use a lot
 - Languages: Python, TypeScript, Rust
+- OS: CachyOS
 
 ## Contact
 - If you also hate classes and love coding overnight. Reach out to me.
